@@ -1,50 +1,47 @@
-import React, {useState} from "react";
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  FormLabel,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Button, Row, Col, FormLabel } from "react-bootstrap";
 
-function FormUpload(){
+function FormUpload() {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
-  const changeHandler = (event) =>{
+  const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
     console.log(selectedFile);
-    console.log(isFilePicked)
-  }
+    console.log(isFilePicked);
+    console.log("This is cool");
+  };
+
+  
+
   const handleSubmission = () => {
-		
     const formData = new FormData();
 
-		formData.append('File', selectedFile);
+    formData.append("File", selectedFile);
 
-		fetch(
-			'https://freeimage.host/api/1/upload?key={your_key_here}',
-			{
-				method: 'POST',
-				body: formData,
-        mode: 'no-cors'
-			}
-		)
-			.then((response) => response.json())
-			.then((result) => {
-				console.log('Success:', result);
-			})
-			.catch((error) => {
-				console.error('Error:', error);
-			});
-	};
- 
+
+    const response = fetch("http://localhost:7071/api/UploadToStorageFromUI", {
+      method: "POST",
+      body: formData,
+      mode: "no-cors",
+    })
+      // TODO: figure out how to handle responses from the API. 
+      // .then((response) => response.json())
+      // .then((result) => {
+      //   console.log("Success:", result);
+      // })
+      // .catch((error) => {
+      //   console.error("Error:", error);
+      // });
+      console.log(response)
+  };
+
   return (
     <>
       <Form>
         <Form.Label>
-          <h2>Upload a file for translation</h2>
+          <h2>Upload a file for translation, right now!</h2>
         </Form.Label>
         <Row className="g-2">
           <Col md>
@@ -52,7 +49,11 @@ function FormUpload(){
               <FormLabel>
                 <h3>Choose a File to Upload</h3>
               </FormLabel>
-              <Form.Control type="file" name="sourceFile" onChange={changeHandler} />
+              <Form.Control
+                type="file"
+                name="sourceFile"
+                onChange={changeHandler}
+              />
             </Form.Group>
           </Col>
           <Col md>
@@ -99,6 +100,6 @@ function FormUpload(){
       </Form>
     </>
   );
-};
+}
 
 export default FormUpload;
