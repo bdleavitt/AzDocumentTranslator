@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { Form, Button, Row, Col, FormLabel } from "react-bootstrap";
+import LanguagesSelect from "./LanguagesSelect.js";
 
 function FormUpload() {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
-
+  
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
-    console.log(selectedFile);
+    console.log(selectedFile); 
     console.log(isFilePicked);
-    console.log("This is cool");
+    console.log("This is cool"); //Dr. Bot  //Lol. I like this name for you. //Negative Ghostrider, the pattern is full // 
   };
-
-  
 
   const handleSubmission = () => {
     const formData = new FormData();
@@ -65,32 +64,10 @@ function FormUpload() {
                 </p>
               </FormLabel>
 
-              <Form.Control as="select" multiple style={{ height: "300px" }}>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Control>
+              {/* <Form.Control as="select" multiple style={{ height: "300px" }}>                   */}
+               <LanguagesSelect />
+              {/* </Form.Control> */}
+
             </Form.Group>
           </Col>
         </Row>

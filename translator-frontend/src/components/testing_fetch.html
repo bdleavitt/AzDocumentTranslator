@@ -2,28 +2,30 @@
 <ul id="languages"></ul>
 
 <script>
-  const ul = document.getElementById('languages');
-  const url = "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0";
+  const ul = document.getElementById("languages");
+  const url =
+    "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0";
 
   function createNode(element) {
     return document.createElement(element);
-}
+  }
 
-function append(parent, el) {
-  return parent.appendChild(el);
-}
+  function append(parent, el) {
+    return parent.appendChild(el);
+  }
 
-fetch(url)
-.then((resp) => resp.json())
-.then(function(data){
-  let languages = data.translation;
-  let keys = Object.keys(languages);
-  keys.forEach((key, index) => {
-    let li = createNode('li');
-    let span = createNode('span');
-    span.innerHTML = `${languages[key].name} - ${languages[key].nativeName}`;
-    append(li, span);
-    append(ul, li);
-  });
-});
+  fetch(url)
+    .then((resp) => resp.json())
+    .then(function (data) {
+      let languages = data.translation;
+      console.log(languages);
+      let keys = Object.keys(languages);
+      keys.forEach((key, index) => {
+        let li = createNode("li");
+        let span = createNode("span");
+        span.innerHTML = `${languages[key].name} - ${languages[key].nativeName}`;
+        append(li, span);
+        append(ul, li);
+      });
+    });
 </script>
